@@ -13,6 +13,11 @@ stages:
   runs:
   - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
 
+  - name: example-commands # Sample module demonstrating the Shell module with custom commands
+    type: shell
+    commands:
+      - echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mullvad.list
+
   modules:
   - name: init-setup
     type: shell
@@ -27,8 +32,7 @@ stages:
     source:
       packages:
         - vim
-      paths:
-        - "https://mullvad.net/download/app/deb/latest"
+        - mullvad-vpn        
 
   - name: example-commands # Sample module demonstrating the Shell module with custom commands
     type: shell
