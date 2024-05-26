@@ -20,13 +20,25 @@ stages:
     - lpkg --unlock
     - apt-get update
 
-  # Put your custom actions behind this comment
-
+  # Put your custom actions behind this comment  
+  - name: add-mullvad-vpn # Sample module demonstrating the Shell module with custom commands
+    type: shell
+    commands:
+      - echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$(dpkg --print-architecture)] https://repository.mullvad.net/deb/stable sid main" | tee /etc/apt/sources.list.d/mullvad.list
+  
+  
+  # Put your custom actions behind this comment  
+  - name: update-apt
+    type: shell
+    commands:
+      - apt update -y
+  
   - name: example-packages # Sample module using the built-in Apt module to install packages
     type: apt
     source:
       packages:
-      - vim
+        - vim
+        - mullvad-vpn
 
   - name: example-commands # Sample module demonstrating the Shell module with custom commands
     type: shell
