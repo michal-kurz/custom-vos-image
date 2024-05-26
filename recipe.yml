@@ -29,7 +29,7 @@ stages:
   - name: add-mullvad-vpn1 # Sample module demonstrating the Shell module with custom commands
     type: shell
     commands:
-      - apt update
+      - apt update -y
 
 
   - name: add-mullvad-vpn2 # Sample module demonstrating the Shell module with custom commands
