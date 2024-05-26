@@ -14,11 +14,6 @@ stages:
   - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
 
   modules:
-  - name: example-commands # Sample module demonstrating the Shell module with custom commands
-    type: shell
-    commands:
-      - sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" >> /etc/apt/sources.list.d/mullvad.list'
-      
   - name: init-setup
     type: shell
     commands:
@@ -26,6 +21,26 @@ stages:
     - apt-get update
 
   # Put your custom actions behind this comment
+  - name: test1 # Sample module demonstrating the Shell module with custom commands
+    type: shell
+    commands:
+      - deb --help [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" >> /etc/apt/sources.list.d/mullvad.list'
+
+  - name: test2 # Sample module demonstrating the Shell module with custom commands
+    type: shell
+    commands:
+      - dpkg --help
+
+
+  - name: test3 # Sample module demonstrating the Shell module with custom commands
+    type: shell
+    commands:
+      - lsb_release --help 
+
+  - name: test1 # Sample module demonstrating the Shell module with custom commands
+    type: shell
+    commands:
+      - echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" >> /etc/apt/sources.list.d/mullvad.list
 
   - name: example-packages # Sample module using the built-in Apt module to install packages
     type: apt
