@@ -25,23 +25,13 @@ stages:
     type: shell
     commands:
       - echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=sid] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/mullvad.list
-
-  - name: add-mullvad-vpn1 # Sample module demonstrating the Shell module with custom commands
-    type: shell
-    commands:
-      - apt update -y
-
-
-  - name: add-mullvad-vpn2 # Sample module demonstrating the Shell module with custom commands
-    type: shell
-    commands:
-      - apt install mullvad-vpn
-      
+ 
   - name: example-packages # Sample module using the built-in Apt module to install packages
     type: apt
     source:
       packages:
         - vim
+        - mullvad-vpn
 
   - name: example-commands # Sample module demonstrating the Shell module with custom commands
     type: shell
