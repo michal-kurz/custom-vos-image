@@ -27,7 +27,8 @@ stages:
     source:
       packages:
       - vim
-      - libsecret-1-dev
+      - libsecret-1-dev # dependency for Bot framework emulator appimage
+      - gnome-tweaks
 
   - name: example-commands # Sample module demonstrating the Shell module with custom commands
     type: shell
